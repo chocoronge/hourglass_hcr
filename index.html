@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#133d32"><title>HOUR / Christmas Edition · 디지털 모래시계</title><style>
+:root{color-scheme:dark;--paper:#101211;--panel:#171a18;--ink:#eeeae0;--muted:#a0a79f;--line:#333932;--accent:#e9bc77;font-family:"Segoe UI","Malgun Gothic",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}main{max-width:1440px;margin:auto;padding:28px 48px}header{display:flex;justify-content:space-between;align-items:center;padding-bottom:26px;border-bottom:1px solid var(--line)}.wordmark{font-size:32px;letter-spacing:-2px;font-weight:800;text-decoration:none;color:var(--ink)}.wordmark span{color:var(--accent)}.edition{font-size:10px;line-height:1.8;letter-spacing:1.8px;text-align:right;color:var(--muted)}.instrument{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,1fr);margin-top:28px;border:1px solid var(--line)}.visual{position:relative;min-width:0;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:radial-gradient(ellipse at 45% 40%,#30392f 0,#181e1b 42%,#121613 76%)}.visual:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#ffffff03 1px,transparent 1px),linear-gradient(90deg,#ffffff03 1px,transparent 1px);background-size:40px 40px}.visual-top,.visual-bottom{z-index:1;display:flex;justify-content:space-between;gap:12px;padding:24px;font-size:10px;letter-spacing:1.2px;color:var(--muted)}.badge:before{content:"";display:inline-block;width:6px;height:6px;background:#8a8f87;border-radius:50%;margin-right:8px}.badge.live:before{background:#96d2b0;box-shadow:0 0 10px #96d2b066}.scene{position:relative;width:100%;aspect-ratio:1;max-height:720px}.scene canvas{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:contain}.scene-shadow{position:absolute;width:40%;height:4%;left:30%;bottom:6%;border-radius:50%;background:#0008;filter:blur(12px)}.visual-bottom{line-height:1.9;letter-spacing:.8px}.visual-bottom strong{color:#c7cbbf;font-weight:400;font-size:15px;letter-spacing:0}.view-note{text-align:right;letter-spacing:0}.console{background:var(--panel);padding:28px 30px;border-left:1px solid var(--line);min-width:0}.eyebrow{font-size:9px;letter-spacing:1.5px;color:var(--muted)}h1{font-size:29px;letter-spacing:-1.5px;margin:10px 0 8px;font-weight:500}p{font-size:12px;line-height:1.7;color:var(--muted)}#device{margin:0 0 20px;font-family:monospace;font-size:12px}button{font:inherit;cursor:pointer;min-height:42px;padding:10px 14px;color:var(--ink);background:transparent;border:1px solid #50594d;border-radius:3px;font-size:12px}button:hover:not(:disabled){background:#ffffff0b;border-color:#c4cbbb}button:disabled{opacity:.38;cursor:not-allowed}button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.buttons{display:flex;gap:8px}.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);flex:1}.primary:hover:not(:disabled){background:#d9d5ca}#message{min-height:40px;margin:12px 0 18px;font-size:11px}.time-section,.color-section,.telemetry{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.section-heading label,h2{font-size:12px;font-weight:400;margin:0}output{font-size:34px;font-weight:300;line-height:1;font-variant-numeric:tabular-nums}output span{font-size:10px;color:var(--muted);letter-spacing:1px}input[type=range]{width:100%;margin:8px 0 0;accent-color:var(--accent);cursor:pointer;height:20px}.ticks{display:flex;justify-content:space-between;padding:0 3px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}.wide{width:100%;margin-top:18px;text-align:left}.hint{font-size:10px;line-height:1.8;margin:10px 0 0}.color-row{display:flex;align-items:center;gap:12px;margin:12px 0}.color-row label{flex:1;font-size:11px;white-space:nowrap}.color-row small{color:var(--muted);margin-left:6px}.palette{display:flex;gap:7px}.palette button{width:18px;height:18px;min-height:0;padding:0;border-radius:50%;border:2px solid transparent;background:var(--swatch)}.palette button[aria-pressed=true]{outline:1px solid #ece9df;outline-offset:2px}.palette button:hover{background:var(--swatch)}input[type=color]{width:27px;height:27px;padding:0;border:1px solid #656b60;background:none;cursor:pointer;border-radius:3px}.telemetry #state{color:var(--accent);margin:0 0 12px;font-size:13px}dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}dt{font-size:10px;color:var(--muted)}dd{font-size:15px;margin:5px 0 0;font-variant-numeric:tabular-nums}.audio{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:8px}.audio label{font-size:11px;display:flex;align-items:center;gap:6px}.audio input{accent-color:var(--accent)}.audio button{border:0;padding:4px;min-height:32px;font-size:10px;color:var(--muted)}footer{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:22px 0;color:var(--muted);font-size:9px;letter-spacing:1px}footer p{text-align:right;font-size:10px;margin:0;letter-spacing:0}@media(min-width:1100px){.scene{margin:auto 0}.console{padding:28px 36px}}@media(max-width:760px){main{padding:20px 16px}.instrument{grid-template-columns:1fr;margin-top:18px}.console{border-left:0;border-top:1px solid var(--line);padding:24px}.scene{max-height:500px}.visual-top,.visual-bottom{padding:18px}.visual-bottom strong{font-size:13px}footer{align-items:flex-start;flex-direction:column;gap:10px}footer p{text-align:left}}
+
+
+/* Christmas Edition — presentation-only skin; BLE and digital twin logic unchanged. */
+:root{color-scheme:light;--paper:#f4efe5;--panel:#fffcf5;--ink:#173e32;--muted:#797e70;--line:#ded9c9;--accent:#b78a45;font-family:"Segoe UI","Malgun Gothic",sans-serif}
+html{background:#f4efe5}
+body{background:radial-gradient(ellipse at 6% 2%,#fffaf1 0%,transparent 35%),radial-gradient(ellipse at 95% 98%,#e3ece0 0%,transparent 38%),#f4efe5;color:var(--ink);min-height:100vh}
+main{max-width:1450px;padding:30px 46px 24px}
+header{padding:8px 2px 26px;border-bottom:1px solid #c9cfbd;position:relative}
+header:after{content:"✦   ✧   ✦";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);font-size:15px;color:#ba914e;background:#f4efe5;padding:0 16px;letter-spacing:7px}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:5px}.wordmark{font-size:39px;letter-spacing:-2.4px;color:#174637}.wordmark span{color:#b08a48}
+.holiday-mark{font-size:9px;letter-spacing:3px;color:#a55143;font-weight:800;display:flex;align-items:center;gap:8px}.holiday-mark:before{content:"✦";font-size:13px;color:#b99151}
+.edition{font-size:10px;letter-spacing:1.35px;line-height:2;color:#667969;font-weight:600}
+.instrument{margin-top:29px;grid-template-columns:minmax(0,1.46fr) minmax(345px,1fr);border:1px solid #c9ccbb;border-radius:15px;overflow:hidden;box-shadow:0 22px 48px #183b3020,0 3px 9px #1e3a2d0d}
+.visual{background:radial-gradient(ellipse at 46% 40%,#29604d 0%,#164638 45%,#092d25 85%);isolation:isolate;min-height:590px}
+.visual:before{background-image:radial-gradient(circle,#fff9ddc9 1px,transparent 1.8px),radial-gradient(circle,#fff9dd85 1.4px,transparent 2.2px),linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);background-size:97px 113px,151px 157px,42px 42px,42px 42px;background-position:20px 30px,60px 80px,0 0,0 0;opacity:.6;z-index:0}
+.visual:after{content:"";position:absolute;inset:17px;border:1px solid #d8c18b3d;border-radius:9px;pointer-events:none;z-index:0}
+.holiday-scene-label{position:absolute;top:74px;left:0;right:0;text-align:center;z-index:2;font-size:10px;color:#d7bb81;letter-spacing:2.6px;font-weight:700}
+.visual-top,.visual-bottom{color:#d2decf;padding:25px 30px;position:relative;z-index:2}
+.visual-top{font-size:10px;font-weight:650}.visual-top #render-mode{color:#d7bc86}
+.badge:before{background:#e5bd81}.badge.live:before{background:#9be3ab;box-shadow:0 0 12px #9be3ab}
+.scene{z-index:1;max-height:660px}.scene canvas{filter:drop-shadow(0 6px 19px #edcb7433)}.scene-shadow{background:#0007}
+.visual-bottom{background:linear-gradient(0deg,#03251b7a,transparent);padding-bottom:31px;font-size:9px;letter-spacing:1.5px}
+.visual-bottom strong{color:#f1e0b7;font-size:17px;font-weight:500;letter-spacing:.2px}
+.view-note{color:#b8c9b7;font-size:10px;line-height:2}
+.console{background:linear-gradient(153deg,#fffdf8,#faf7ed 90%);border-left:1px solid #d9d4c3;padding:34px 38px 26px}
+.eyebrow{color:#a27740;font-size:9px;letter-spacing:1.7px;font-weight:750}
+h1{font-size:30px;font-weight:700;letter-spacing:-1.8px;margin:12px 0 8px;color:#194636}
+.heading-star{font-family:serif;color:#b99353;font-size:26px}
+p{color:#737c70;font-size:12px}
+#device{color:#66766b;font-size:12px;margin-bottom:18px}
+button{color:#224739;background:#fffdfa;border:1px solid #bcc9b9;border-radius:9px;font-weight:650;font-size:12px;transition:background .15s ease,border-color .15s ease,transform .15s ease;box-shadow:0 2px 3px #21443406}
+button:hover:not(:disabled){background:#edf3e8;border-color:#69937a;transform:translateY(-1px)}button:disabled{opacity:.38}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid #bb8b49}
+.buttons{gap:9px}.primary{background:#b64d43;border-color:#b64d43;color:#fffef7;flex:1;box-shadow:0 4px 12px #a6403026}
+.primary:hover:not(:disabled){background:#9d3c34;border-color:#9d3c34}
+#message{margin:12px 0 12px;min-height:36px;color:#788074}
+.time-section,.color-section,.telemetry{border-top:1px solid #e2dfd3;margin-top:17px;padding-top:19px}
+.section-heading label,h2{font-weight:700;color:#274e3f;font-size:13px}
+.mini-sparkle{font-size:10px;color:#bb934d;margin-left:4px}
+output{color:#b14d42;font-size:37px;font-weight:700;letter-spacing:-1.5px}output span{color:#a28861;font-weight:700;font-size:10px}
+input[type=range]{accent-color:#b4493e;height:21px}
+.ticks{color:#878d7c;font-size:10px;padding-top:1px}
+.wide{width:100%;background:#214f3f;color:#fff9e9;border-color:#214f3f;text-align:center;box-shadow:0 4px 11px #204b3c20}
+.wide:hover:not(:disabled){background:#133e30;border-color:#133e30}
+.hint{font-size:10px;color:#878c80;line-height:1.75}
+.color-row{margin:13px 0;gap:10px}.color-row label{font-size:12px;color:#3e5d4d;font-weight:650}.color-row small{color:#98a096}
+.palette{gap:8px}.palette button{width:20px;height:20px;min-height:0;border:2px solid #fffcf4;box-shadow:0 0 0 1px #d8d8cb}
+.palette button[aria-pressed=true]{outline:2px solid #ae8650;outline-offset:2px}
+input[type=color]{width:29px;height:29px;border:1px solid #b8c2b0;border-radius:8px}
+.telemetry-title{font-size:9px;letter-spacing:1.6px;color:#a27c49;font-weight:800;margin-bottom:10px}.telemetry-title span{font-size:14px}
+.telemetry #state{color:#a44c41;font-weight:700;font-size:13px;margin-bottom:15px}
+dl{gap:9px}dl>div{background:#f1f3e9;border:1px solid #e3e7d9;padding:12px;border-radius:9px;min-width:0}
+dt{font-size:10px;color:#788474}dd{color:#2b4f40;font-weight:700;font-size:15px;margin-top:7px}
+.audio{border-top:1px solid #e2dfd3;padding-top:17px;margin-top:20px}.audio label{font-size:11px;color:#3b5a49;font-weight:700}.audio input{accent-color:#ad5146}.audio button{color:#a34e43;font-size:10px}
+footer{padding:24px 3px;color:#718075;font-size:9px}footer>span{color:#a17a44;font-weight:800}footer p{color:#899086}
+@media (max-width:1050px){main{padding:22px}.instrument{grid-template-columns:minmax(0,1.1fr) minmax(315px,1fr)}.console{padding:26px}.visual{min-height:520px}}
+@media (max-width:760px){main{padding:15px 12px 24px}header{padding:8px 4px 22px}.wordmark{font-size:32px}.edition{font-size:8px;letter-spacing:.45px}.holiday-mark{font-size:8px;letter-spacing:2px}.instrument{grid-template-columns:1fr;margin-top:24px;border-radius:12px}.visual{min-height:0}.holiday-scene-label{top:60px;font-size:8px}.scene{max-height:470px}.console{border-left:0;border-top:1px solid #ded8c6;padding:23px 19px}.visual-top,.visual-bottom{padding:18px}.visual-bottom{padding-bottom:23px}.visual-bottom strong{font-size:14px}h1{font-size:27px}footer{gap:9px}footer p{text-align:left}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
+
+
+/* Festive instrument upgrade: gold chassis + holiday ornament accents. */
+.visual{background:radial-gradient(ellipse at 48% 40%,#216147 0,#123f35 47%,#08291f 83%)}
+.visual:before{animation:starGlow 7s ease-in-out infinite alternate}
+@keyframes starGlow{from{opacity:.33}to{opacity:.77}}
+.scene{isolation:isolate}
+.scene canvas{z-index:2;filter:drop-shadow(0 8px 25px #edbd6c38)}
+.festive-tinsel{position:absolute;z-index:3;pointer-events:none;top:7%;left:13%;width:74%;height:16px;border-top:2px solid #d2b4787d;border-radius:50%;display:flex;justify-content:space-around;transform:rotate(-4deg)}
+.festive-tinsel span{display:block;color:#ffd18c;text-shadow:0 0 8px #ffe6a4;font-size:15px;animation:twinkle 2.9s ease-in-out infinite alternate}
+.festive-tinsel span:nth-child(2n){color:#e97769;animation-delay:.65s}
+@keyframes twinkle{to{opacity:.33;transform:scale(.75)}}
+.ribbon{position:absolute;z-index:4;pointer-events:none;top:9%;left:50%;width:80px;height:62px;transform:translateX(-50%) scale(.82);filter:drop-shadow(0 4px 8px #0006)}
+.bow-left,.bow-right{position:absolute;top:6px;width:33px;height:23px;border:3px solid #efb7a9;background:#b33e3e;transform-origin:center}
+.bow-left{left:6px;border-radius:80% 17% 70% 20%;transform:rotate(27deg)}
+.bow-right{right:6px;border-radius:17% 80% 20% 70%;transform:rotate(-27deg)}
+.bow-knot{position:absolute;z-index:2;left:35px;top:16px;width:12px;height:15px;border:2px solid #e7ae8c;background:#a92f37;border-radius:45%}
+.ribbon-tail{position:absolute;top:24px;width:15px;height:34px;background:#b83e45;border-left:2px solid #e2a6a6;border-right:2px solid #e2a6a6;clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%)}
+.ribbon-tail.left{left:29px;transform:rotate(15deg)}.ribbon-tail.right{left:42px;transform:rotate(-15deg)}
+.snow-layer{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.snow-layer[hidden]{display:none!important}
+.snow-layer i{position:absolute;top:-20px;left:var(--x);width:var(--size);height:var(--size);border-radius:50%;background:#fff9e7a9;box-shadow:0 0 5px #fff9df8a;animation:snowFall var(--fall) linear var(--delay) infinite}
+@keyframes snowFall{0%{transform:translate3d(0,-15px,0);opacity:0}12%{opacity:.7}90%{opacity:.72}100%{transform:translate3d(var(--drift),540px,0);opacity:0}}
+.quick-title{display:flex;align-items:center;justify-content:space-between;color:#947247;font-weight:800;font-size:9px;letter-spacing:1.2px;margin:0 0 9px}
+.quick-title span{font-size:10px;color:#8d9287;letter-spacing:0;font-weight:400}
+.quick-time{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:18px}
+.quick-time button{min-height:34px;padding:6px;font-size:11px;border-radius:20px;background:#f6f2e6;border:1px solid #d7d6c9;color:#43614e}
+.quick-time button[aria-pressed=true]{background:#b64d43;color:white;border-color:#b64d43}
+.display-options{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #e2dfd3;padding-top:16px;margin-top:20px}
+.display-options strong{display:block;font-size:12px;color:#315542}.display-options span{display:block;color:#8b9285;font-size:10px;margin-top:3px}
+.snow-option{display:flex;gap:6px;align-items:center;font-size:11px;color:#315542;white-space:nowrap}.snow-option input{accent-color:#b34f48}
+.audio{margin-top:15px}
+@media(prefers-reduced-motion:reduce){.snow-layer i,.festive-tinsel span,.visual:before{animation:none}}
+@media(max-width:760px){.ribbon{top:7%;transform:translateX(-50%) scale(.62)}.festive-tinsel{top:5%}.quick-time{margin-bottom:15px}}
+
+</style></head>
+<body><main>
+<header><div class="brand"><a class="wordmark" href="./">HOUR<span> / </span></a><span class="holiday-mark">CHRISTMAS EDITION · WALNUT</span></div><span class="edition">A LITTLE MAGIC IN EVERY MINUTE<br>실물과 연결되는 크리스마스의 시간</span></header>
+<section class="instrument" aria-label="디지털 모래시계 제어">
+<div class="visual">
+<div class="holiday-scene-label" aria-hidden="true">✦ &nbsp; THE MAGIC OF TIME &nbsp; ✦</div>
+<div class="visual-top"><span id="connection" class="badge">연결 전</span><span id="render-mode">3D VIEW</span></div>
+<div class="scene"><div class="festive-tinsel" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span></div><div class="ribbon" aria-hidden="true"><span class="bow-left"></span><span class="bow-knot"></span><span class="bow-right"></span><span class="ribbon-tail left"></span><span class="ribbon-tail right"></span></div><canvas id="hourglass" width="800" height="800" aria-label="실물 LED 128칸과 화면 평면 기울기를 재현하는 모래시계"></canvas><div class="scene-shadow"></div><div class="snow-layer" id="snow-layer" aria-hidden="true"></div></div>
+<div class="visual-bottom"><span>128 LITTLE LIGHTS<br><strong>Let every second sparkle.</strong></span><span class="view-note">❄ 2026 CHRISTMAS EDITION<br>실물 움직임과 동기화됩니다.</span></div>
+</div>
+<aside class="console">
+<div class="console-title"><span class="eyebrow">✦ THE CHRISTMAS COLLECTION / REFINED</span><h1>반짝이는 시간 <span class="heading-star" aria-hidden="true">✧</span></h1><p id="device">내 모래시계를 연결하세요</p></div>
+<section aria-label="장치 연결"><div class="buttons"><button id="connect" class="primary" disabled>내 모래시계 연결 ↗</button><button id="disconnect" disabled>연결 해제</button></div><p id="message" role="status" aria-live="polite">연결하면 실물의 현재 상태를 가져옵니다.</p></section>
+<section class="time-section" aria-label="시간 설정"><div class="quick-title">QUICK TIME <span>자주 쓰는 시간</span></div><div class="quick-time" role="group" aria-label="시간 빠른 선택"><button type="button" data-minutes="1">1분</button><button type="button" data-minutes="3">3분</button><button type="button" data-minutes="5">5분</button><button type="button" data-minutes="10">10분</button></div>
+<div class="section-heading"><label for="minutes">시간 설정 <span class="mini-sparkle">✦</span></label><output id="selected-time" for="minutes">01<span> MIN</span></output></div>
+<input id="minutes" type="range" min="1" max="10" step="1" value="1" aria-valuetext="1분">
+<div class="ticks" aria-label="분 눈금"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
+<button id="restart" class="wide" disabled>시간을 다시 채우기 ↻</button><p class="hint">수직으로 세웠을 때의 기준 시간입니다. 적용하면 현재 위쪽 방에 64알을 새로 채웁니다.</p>
+</section>
+<section class="color-section" aria-label="웹 LED 색상">
+<div class="section-heading"><h2>모래빛 고르기</h2><span class="eyebrow">WEB COLORS</span></div>
+<div class="color-row"><label for="upper-color">위 모듈 <small>A</small></label><div class="palette" data-module="upper"></div><input type="color" id="upper-color" value="#ffc56e" aria-label="위 모듈 RGB 색상 직접 선택"></div>
+<div class="color-row"><label for="lower-color">아래 모듈 <small>B</small></label><div class="palette" data-module="lower"></div><input type="color" id="lower-color" value="#75d7c8" aria-label="아래 모듈 RGB 색상 직접 선택"></div>
+<p class="hint">웹 화면의 색만 변경됩니다. 색은 뒤집어도 같은 모듈을 따라갑니다.</p>
+</section>
+<section class="telemetry" aria-label="실시간 상태"><div class="telemetry-title">LIVE MOMENTS <span aria-hidden="true">✧</span></div><p id="state">연결을 기다리고 있어요</p><dl><div><dt>적용된 기준 시간</dt><dd id="duration">—</dd></div><div><dt>실제 경과 시간</dt><dd id="elapsed">—</dd></div><div><dt>위 / 아래 모래</dt><dd id="grains">—</dd></div><div><dt>화면 평면 기울기</dt><dd id="angle">—</dd></div></dl></section>
+<div class="display-options"><div><strong>겨울 장식</strong><span>웹 화면에만 적용</span></div><label class="snow-option"><input type="checkbox" id="snow-toggle" checked> 눈 내리기</label></div><div class="audio"><label><input id="sound" type="checkbox" checked> 완료 알림음</label><button id="test-sound">소리 테스트 ♪</button></div>
+</aside></section>
+<footer><span>✦ HOUR / CHRISTMAS DIGITAL TWIN</span><p>Windows · Chrome / Edge · HTTPS 또는 localhost<br>연결이 끊겨도 실물은 계속 작동합니다. 웹 알림음은 페이지를 열어 둔 동안 사용하세요.</p></footer>
+</main><script type="module">
+const UUID = Object.freeze({
+  service: 'f06f0001-6e91-4f6c-946d-5dc7ab714001',
+  state: 'f06f0002-6e91-4f6c-946d-5dc7ab714001',
+  stream: 'f06f0003-6e91-4f6c-946d-5dc7ab714001',
+  command: 'f06f0004-6e91-4f6c-946d-5dc7ab714001',
+});
+const STATE_LABELS = ['보정 대기', '모래 이동 중', '기울기로 일시 정지', '완료', '센서 연결 오류'];
+const RESULT_LABELS = ['적용 완료', '지원하지 않는 명령입니다.', '모래시계를 세운 뒤 다시 적용하세요.', '센서 연결과 보정을 먼저 확인하세요.', '장치가 명령을 처리 중입니다. 잠시 후 다시 적용하세요.'];
+const bytesOf = value => value instanceof DataView
+  ? new Uint8Array(value.buffer, value.byteOffset, value.byteLength)
+  : new Uint8Array(value.buffer ?? value, value.byteOffset ?? 0, value.byteLength);
+
+function decodeSnapshot(value) {
+  const bytes = bytesOf(value);
+  if (bytes.length !== 48) throw new Error('상태 데이터 길이가 맞지 않습니다.');
+  const d = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  if (d.getUint8(0) !== 1) throw new Error('펌웨어와 웹의 통신 버전이 다릅니다.');
+  const state = d.getUint8(1), duration = d.getUint16(2, true);
+  if (state > 4 || duration < 60 || duration > 600 || duration % 60 !== 0) throw new Error('잘못된 상태 값입니다.');
+  if (bytes[26] > 4) throw new Error('잘못된 명령 응답입니다.');
+  const grid = Array.from({length: 2}, (_, m) => Array.from({length: 8}, (_, r) =>
+    Array.from({length: 8}, (_, c) => Boolean(bytes[28 + m * 8 + r] & (1 << c)))));
+  const counts = grid.map(module => module.flat().filter(Boolean).length);
+  if (counts[1] !== bytes[46] || counts[0] !== bytes[47] ||
+      ([1, 2, 3].includes(state) && counts[0] + counts[1] !== 64)) {
+    throw new Error('모래 상태 검증에 실패했습니다.');
+  }
+  const gx = d.getInt16(4, true) / 10000, gy = d.getInt16(6, true) / 10000;
+  const plane = d.getUint16(44, true) / 10000;
+  if (Math.abs(gx) > 1.01 || Math.abs(gy) > 1.01 || plane > 1.01) throw new Error('기울기 범위를 벗어났습니다.');
+  return {state, duration, gx, gy, plane, grid, upper: counts[1], lower: counts[0],
+    elapsed: d.getUint32(8, true), completionId: d.getUint32(12, true),
+    runId: d.getUint32(16, true), boot: d.getUint32(20, true),
+    ack: d.getUint16(24, true), result: bytes[26]};
+}
+
+// Four <=20-byte notifications form a single immutable 48-byte snapshot.
+class FrameAssembler {
+  reset() { this.sequence = undefined; this.parts = new Map(); this.done = false; }
+  constructor() { this.reset(); }
+  push(value) {
+    const bytes = bytesOf(value);
+    if (bytes.length < 6 || bytes[0] !== 0x48 || bytes[1] !== 1 || bytes[5] !== 4 || bytes[4] > 3) return null;
+    const sequence = bytes[2] | (bytes[3] << 8), part = bytes[4];
+    if (bytes.length !== (part === 3 ? 12 : 20)) return null;
+    if (this.sequence !== undefined && sequence !== this.sequence) {
+      const delta = (sequence - this.sequence) & 0xffff;
+      if (delta >= 0x8000) return null; // late frame, including wrap-around
+    }
+    if (sequence !== this.sequence) {this.sequence = sequence; this.parts.clear(); this.done = false;}
+    if (this.done) return null;
+    this.parts.set(part, bytes.slice(6));
+    if (this.parts.size !== 4) return null;
+    const frame = new Uint8Array(48);
+    for (let i = 0; i < 4; i++) frame.set(this.parts.get(i), i * 14);
+    this.done = true;
+    return decodeSnapshot(frame);
+  }
+}
+
+class CompletionTracker {
+  reset() { this.boot = undefined; this.completion = undefined; }
+  constructor() { this.reset(); }
+  accept(state) {
+    const delta = (state.completionId - this.completion) >>> 0;
+    const sound = this.boot === state.boot && this.completion !== undefined && delta > 0 && delta < 0x80000000 && state.state === 3;
+    this.boot = state.boot; this.completion = state.completionId;
+    return sound;
+  }
+}
+function restartCommand(id, minutes) {
+  if (!Number.isInteger(id) || id < 1 || id > 65535 || !Number.isInteger(minutes) || minutes < 1 || minutes > 10) throw new Error('명령 값이 잘못되었습니다.');
+  return new Uint8Array([1, id & 255, id >> 8, 1, minutes, 0]);
+}
+
+// Coordinates are identical in both renderers: module 0 = lower, 1 = upper.
+const LED_CELLS = Object.freeze(Array.from({length:128}, (_,i) => {
+  const module=i>>6,row=(i>>3)&7,col=i&7;
+  return Object.freeze({module,row,col,x:(row-col)*.103,y:(module===1?.87:-.87)-(row+col-7)*.103});
+}));
+const rgb = hex => [1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255);
+const tint = (c,k,a=1) => [...c.map(v=>v*k),a];
+
+// A small triangle renderer: shaded solids, translucent cover, emissive LED lenses.
+class WebGLRenderer {
+  constructor(canvas) {
+    const gl=canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false});
+    if(!gl) throw new Error('WebGL unavailable');
+    this.gl=gl;this.canvas=canvas;
+    const shader=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);
+      if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;};
+    const vertex=shader(gl.VERTEX_SHADER,`attribute vec3 position;attribute vec4 color;
+      uniform float angle;uniform float view;uniform float aspect;varying vec4 vColor;
+      void main(){float c=cos(angle),s=sin(angle);vec3 p=position;
+      p.xy=mat2(c,s,-s,c)*p.xy;
+      p.xz=mat2(cos(view),-sin(view),sin(view),cos(view))*p.xz;
+      p.yz=mat2(cos(-.08),-sin(-.08),sin(-.08),cos(-.08))*p.yz;
+      float w=5.5-p.z;gl_Position=vec4(p.x*2.25/aspect,p.y*2.25,-p.z,w);vColor=color;}`);
+    const fragment=shader(gl.FRAGMENT_SHADER,`precision mediump float;varying vec4 vColor;void main(){gl_FragColor=vColor;}`);
+    const program=gl.createProgram();gl.attachShader(program,vertex);gl.attachShader(program,fragment);gl.linkProgram(program);
+    if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));
+    gl.deleteShader(vertex);gl.deleteShader(fragment);gl.useProgram(program);
+    this.program=program;this.buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);
+    for(const [name,size,offset] of [['position',3,0],['color',4,12]]) {
+      const loc=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,28,offset);
+    }
+    this.uniforms=Object.fromEntries(['angle','view','aspect'].map(n=>[n,gl.getUniformLocation(program,n)]));
+    gl.enable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+  }
+  draw({snapshot,stale,angle,colors,time,reduced}) {
+    const {gl,canvas}=this;if(gl.isContextLost())return;
+    const size=Math.max(1,Math.round(canvas.clientWidth*Math.min(devicePixelRatio||1,2)));
+    const height=Math.max(1,Math.round(canvas.clientHeight*Math.min(devicePixelRatio||1,2)));
+    if(canvas.width!==size||canvas.height!==height){canvas.width=size;canvas.height=height;}
+    gl.viewport(0,0,size,height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    gl.uniform1f(this.uniforms.angle,-angle);
+    // Fixed presentation perspective, never an invented sensor yaw/front-back measurement.
+    gl.uniform1f(this.uniforms.view,.24+(!snapshot&&!reduced?.055*Math.sin(time/2400):0));
+    gl.uniform1f(this.uniforms.aspect,size/height);
+    const solid=[],transparent=[],glow=[];
+    const tri=(list,a,b,c,color)=>{for(const p of [a,b,c])list.push(...p,...color);};
+    const quad=(list,a,b,c,d,color)=>{tri(list,a,b,c,color);tri(list,a,c,d,color);};
+    const face=(list,points,z,color)=>quad(list,...points.map(([x,y])=>[x,y,z]),color);
+    const diamond=(cy,r)=>[[0,cy+r],[r,cy],[0,cy-r],[-r,cy]];
+    const prism=(points,z0,z1,color)=>{
+      face(solid,points,z0,tint(color,.5));face(solid,points,z1,tint(color,1));
+      for(let i=0;i<4;i++){const a=points[i],b=points[(i+1)%4];quad(solid,[...a,z0],[...b,z0],[...b,z1],[...a,z1],tint(color,[.8,.45,.55,1.3][i]));}
+    };
+    const beam=(a,b,width,z0,z1,color)=>{
+      const dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy),x=-dy/l*width/2,y=dx/l*width/2;
+      prism([[a[0]+x,a[1]+y],[b[0]+x,b[1]+y],[b[0]-x,b[1]-y],[a[0]-x,a[1]-y]],z0,z1,color);
+    };
+    const disk=(list,x,y,z,r,color,edge=color)=>{
+      for(let n=0;n<16;n++){
+        const a=n*Math.PI/8,b=(n+1)*Math.PI/8;
+        list.push(x,y,z,...color,x+Math.cos(a)*r,y+Math.sin(a)*r,z,...edge,x+Math.cos(b)*r,y+Math.sin(b)*r,z,...edge);
+      }
+    };
+    for(let m=0;m<2;m++) {
+      const cy=m===1?.87:-.87,c=rgb(colors[m]);
+      // Walnut body: layered bevels produce depth rather than a flat brown outline.
+      prism(diamond(cy,.83),-.17,.015,[.17,.105,.067]);
+      const points=diamond(cy,.87);
+      for(let i=0;i<4;i++) {
+        const a=points[i],b=points[(i+1)%4];
+        // Dark walnut base rail and a narrower honey-brown inner face.
+        beam(a,b,.065,-.205,.17,[.30,.175,.105]);
+        beam(a,b,.039,.165,.201,[.49,.307,.17]);
+        // Thin satin brass inlay follows the inside of the timber rail.
+        const shrink=p=>[p[0]*.958,cy+(p[1]-cy)*.958];
+        beam(shrink(a),shrink(b),.010,.200,.205,[.82,.66,.40]);
+        // Delicate wood grain: three fine uneven-toned strips parallel to each rail.
+        for(let j=0;j<3;j++) {
+          const t=.31+j*.19;
+          const q0=[a[0]+(b[0]-a[0])*(t-.12),a[1]+(b[1]-a[1])*(t-.12)];
+          const q1=[a[0]+(b[0]-a[0])*(t+.12),a[1]+(b[1]-a[1])*(t+.12)];
+          beam(q0,q1,.0035,.202,.204,j===1?[.60,.395,.228]:[.38,.224,.124]);
+        }
+      }
+      // A lightly tinted glass cover, raised over the LED board.
+      face(transparent,diamond(cy,.825),.145,[...c,.025]);
+      // Glass edge facets and a narrow reflection pick up the selected module color.
+      const cover=diamond(cy,.825);
+      for(let i=0;i<4;i++) {
+        const a=cover[i],b=cover[(i+1)%4];
+        quad(transparent,[...a,.04],[...b,.04],[...b,.145],[...a,.145],[...c,.1]);
+      }
+      quad(transparent,[-.58,cy+.13,.151],[-.1,cy+.61,.151],[-.075,cy+.57,.151],[-.54,cy+.105,.151],[...c,.11]);
+      beam([-.76,cy+.035],[-.05,cy+.745],.006,.147,.149,[.86,.73,.53]);
+      // Small brass rivets at the pointed tips.
+      disk(solid,0,cy+.805,.210,.024,[.91,.76,.49,1]);
+      disk(solid,0,cy-.805,.210,.024,[.91,.76,.49,1]);
+      disk(solid,0,cy+.805,.214,.009,[.99,.89,.67,1]);
+      disk(solid,0,cy-.805,.214,.009,[.99,.89,.67,1]);
+    }
+    // Central joint in matching walnut, with a restrained gilded collar.
+    prism([[-.095,.065],[.095,.065],[.095,-.065],[-.095,-.065]],-.15,.15,[.28,.16,.10]);
+    beam([-.096,.057],[.096,.057],.013,.152,.162,[.80,.63,.37]);
+    beam([-.096,-.057],[.096,-.057],.013,.152,.162,[.80,.63,.37]);
+    for(const cell of LED_CELLS) {
+      const {module:m,row,col,x,y}=cell,on=snapshot?.grid[m][row][col]??false,c=rgb(colors[m]);
+      disk(solid,x+.006,y-.008,.021,.058,[.015,.023,.019,1]); // lens contact shadow
+      disk(solid,x,y,.035,.05,on?tint(c,stale?.35:1):[.105,.135,.11,1]);
+      if(on) {
+        const peak=Math.max(...c);
+        const core=c.map(v=>stale?v*.3+peak*.08:v*.32+peak*.68);
+        disk(solid,x,y,.04,.036,[...core,1],tint(c,stale?.35:1));
+        // Additive light, with a soft outer halo and a brighter inner bloom.
+        disk(glow,x,y,.153,.105,tint(c,1,stale?.02:.24),tint(c,1,0));
+        disk(glow,x,y,.154,.064,tint(c,1,stale?.035:.48),tint(c,1,0));
+      }
+    }
+    const submit=(list)=>{gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(list),gl.DYNAMIC_DRAW);gl.drawArrays(gl.TRIANGLES,0,list.length/7);};
+    gl.depthMask(true);submit(solid);gl.depthMask(false);submit(transparent);
+    gl.blendFunc(gl.SRC_ALPHA,gl.ONE);submit(glow);
+    gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(true);
+  }
+}
+
+class FlatRenderer {
+  constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d');}
+  draw({snapshot,stale,angle,colors}) {
+    const c=this.ctx;if(!c)return;
+    c.clearRect(0,0,800,800);c.save();c.translate(400,400);c.rotate(angle);
+    for(let m=0;m<2;m++) {
+      const cy=(m===1?-.87:.87)*190,r=.86*190;
+      c.beginPath();c.moveTo(0,cy-r);c.lineTo(r,cy);c.lineTo(0,cy+r);c.lineTo(-r,cy);c.closePath();
+      c.fillStyle='#241b16';c.fill();c.strokeStyle='#825235';c.lineWidth=10;c.stroke();c.strokeStyle='#d8b879';c.lineWidth=2;c.stroke();
+    }
+    for(const {module:m,row,col,x,y} of LED_CELLS){const on=snapshot?.grid[m][row][col]??false;
+      c.globalAlpha=on&&stale?.4:1;c.fillStyle=on?colors[m]:'#334336';
+      c.shadowColor=on?colors[m]:'transparent';c.shadowBlur=on&&!stale?18:0;
+      c.beginPath();c.arc(x*190,-y*190,9.5,0,Math.PI*2);c.fill();
+      if(on&&!stale){
+        const color=rgb(colors[m]),peak=Math.max(...color);
+        const core=color.map(v=>Math.round((v*.32+peak*.68)*255));
+        const light=c.createRadialGradient(x*190,-y*190,0,x*190,-y*190,7);
+        light.addColorStop(0,`rgb(${core.join(',')})`);light.addColorStop(1,colors[m]);
+        c.fillStyle=light;c.shadowBlur=0;c.beginPath();c.arc(x*190,-y*190,7,0,Math.PI*2);c.fill();
+      }
+    }
+    c.restore();
+  }
+}
+
+function createRenderer(canvas,onMode) {
+  let active;
+  const fallback=()=>{
+    // A canvas with a WebGL context cannot subsequently provide a 2D context.
+    const replacement=canvas.cloneNode(false);replacement.width=replacement.height=800;
+    canvas.replaceWith(replacement);canvas=replacement;active=new FlatRenderer(canvas);
+    canvas.dataset.renderer='2d';onMode('2D 대체 화면');
+  };
+  try{active=new WebGLRenderer(canvas);canvas.dataset.renderer='webgl';onMode('3D VIEW');
+    canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();fallback();},{once:true});
+  }catch{fallback();}
+  return {draw:state=>active.draw(state)};
+}
+
+const $ = id => document.getElementById(id);
+const assembler = new FrameAssembler(), completion = new CompletionTracker();
+let device, commandCharacteristic, notificationCharacteristic, snapshot;
+let session = 0, busy = false, lastReceived = 0, pending, audioContext;
+let nextId = 1, displayAngle = 0, stale = false;
+let sliderDirty = false;
+const colors = ['#75d7c8', '#ffc56e'];
+const renderer = createRenderer($('hourglass'), mode => $('render-mode').textContent = mode);
+const supported = window.isSecureContext && Boolean(navigator.bluetooth);
+if (!supported) {
+  $('connect').disabled = true;
+  $('message').textContent = window.isSecureContext
+    ? '이 브라우저는 Web Bluetooth를 지원하지 않습니다. Windows의 Chrome/Edge에서 열어주세요.'
+    : '블루투스 연결에는 HTTPS 또는 localhost가 필요합니다. 시작 파일 또는 교사가 제공한 HTTPS 주소로 열어주세요.';
+}
+function message(text) { $('message').textContent = text; }
+function controls() {
+  $('connect').disabled = !supported || busy || Boolean(device?.gatt?.connected);
+  $('disconnect').disabled = !device?.gatt?.connected;
+  $('restart').disabled = busy || !commandCharacteristic || !snapshot || stale || Boolean(pending) || ![1,2,3].includes(snapshot.state);
+}
+async function enableAudio() {
+  audioContext ??= new (window.AudioContext || window.webkitAudioContext)();
+  if (audioContext.state !== 'running') await audioContext.resume();
+}
+function chime() {
+  if (!audioContext || audioContext.state !== 'running') return;
+  for (let i = 0; i < 3; i++) {
+    const oscillator = audioContext.createOscillator(), gain = audioContext.createGain();
+    const start = audioContext.currentTime + i * .23;
+    oscillator.frequency.value = 1050 + i * 230;
+    gain.gain.setValueAtTime(0, start);gain.gain.linearRampToValueAtTime(.12,start+.01);
+    gain.gain.exponentialRampToValueAtTime(.001,start+.14);
+    oscillator.connect(gain);gain.connect(audioContext.destination);
+    oscillator.start(start);oscillator.stop(start+.15);
+    oscillator.onended = () => {oscillator.disconnect();gain.disconnect();};
+  }
+}
+function accept(value) {
+  if (stale) completion.reset();
+  if (!sliderDirty) { $('minutes').value = value.duration / 60; updateSlider(); }
+  snapshot = value;lastReceived = performance.now();stale = false;
+  if (completion.accept(value) && $('sound').checked && !document.hidden) chime();
+  $('connection').textContent = '연결됨';$('connection').classList.add('live');
+  $('state').textContent = STATE_LABELS[value.state];
+  $('duration').textContent = `${value.duration / 60}분`;
+  $('elapsed').textContent = `${Math.floor(value.elapsed / 60000)}분 ${Math.floor(value.elapsed / 1000) % 60}초`;
+  $('grains').textContent = `${value.upper} / ${value.lower}알`;
+  $('angle').textContent = value.plane < .12 ? '평면 방향 측정 어려움' : `${Math.round(Math.atan2(value.gx,value.gy)*180/Math.PI)}°`;
+  if (pending && value.ack === pending.id) {
+    clearTimeout(pending.timer);
+    message(value.result === 0 ? (value.duration === pending.minutes * 60
+      ? `${value.duration / 60}분으로 새로 시작했습니다.`
+      : '장치의 적용 시간이 요청과 다릅니다. 적용된 기준 시간을 확인하세요.')
+      : (value.result === 1 ? '시간 설정을 지원하지 않습니다. 최신 HourglassCore를 복사하고 BLE 펌웨어를 다시 업로드하세요.' : (RESULT_LABELS[value.result] ?? '명령 적용 실패')));
+    pending = undefined;
+  }
+  controls();
+}
+function receive(event) {
+  try {const frame = assembler.push(event.target.value);if (frame) accept(frame);}
+  catch (error) {message(error.message);}
+}
+function cleanup() {
+  session++;
+  notificationCharacteristic?.removeEventListener('characteristicvaluechanged',receive);
+  notificationCharacteristic = commandCharacteristic = undefined;
+  assembler.reset();completion.reset();
+  if (pending) {clearTimeout(pending.timer);pending=undefined;}
+  busy=false;stale=true;
+  $('connection').textContent='연결 끊김';$('connection').classList.remove('live');
+  $('state').textContent='마지막 수신 화면 · 연결 끊김';controls();
+}
+function disconnected() {cleanup();message('연결이 끊겼습니다. 실물은 계속 동작합니다. 다시 연결하면 현재 상태를 가져옵니다.');}
+$('connect').addEventListener('click', async () => {
+  const token=++session;busy=true;controls();message('기기 선택창에서 Hourglass 이름을 선택하세요.');
+  // Invoke both permission-sensitive APIs directly from the click gesture.
+  if ($('sound').checked) enableAudio().catch(()=>message('소리 테스트 버튼으로 오디오를 활성화하세요.'));
+  let chosen;
+  try {
+    chosen=await navigator.bluetooth.requestDevice({filters:[{services:[UUID.service]}]});
+    if(token!==session) return;
+    device?.removeEventListener('gattserverdisconnected',disconnected);device=chosen;
+    device.addEventListener('gattserverdisconnected',disconnected);
+    const server=await device.gatt.connect();
+    if(token!==session) {device.gatt.disconnect();return;}
+    const service=await server.getPrimaryService(UUID.service);
+    if(token!==session) return;
+    const state=await service.getCharacteristic(UUID.state);
+    if(token!==session) return;
+    const command=await service.getCharacteristic(UUID.command);
+    if(token!==session) return;
+    const notification=await service.getCharacteristic(UUID.stream);
+    if(token!==session) return;
+    commandCharacteristic=command;notificationCharacteristic=notification;
+    assembler.reset();completion.reset();snapshot=undefined;stale=false;
+    notificationCharacteristic.addEventListener('characteristicvaluechanged',receive);
+    await notificationCharacteristic.startNotifications();
+    if(token!==session) return;
+    let initial;
+    try {initial=await state.readValue();}
+    catch(error) {if(!snapshot) throw error;} // A valid notification can supply the initial state.
+    if(token!==session) return;
+    if(!snapshot) accept(decodeSnapshot(initial)); // never replace a newer notification with a stale read
+    nextId=((snapshot.ack+1)&0xffff)||1;
+    $('device').textContent=device.name||'내 모래시계';
+    message('현재 상태를 가져왔습니다. 시간 선택만으로는 실행이 초기화되지 않습니다.');
+  } catch(error) {
+    if(token!==session) return;
+    chosen?.gatt?.disconnect();cleanup();
+    message(error.name==='NotFoundError'?'기기 선택을 취소했거나 기기를 찾지 못했습니다. 전원과 BLE 예제를 확인하세요.':`연결 실패: ${error.message}`);
+  } finally {if(token===session) {busy=false;controls();}}
+});
+$('disconnect').addEventListener('click',()=>{device?.gatt?.disconnect();});
+$('restart').addEventListener('click', async () => {
+  if(busy||!commandCharacteristic||pending||stale) return;
+  const id=nextId;nextId=(nextId%65535)+1;
+  pending={id,minutes:Number($('minutes').value),timer:setTimeout(()=>{
+    if(pending?.id===id) {pending=undefined;message('적용 확인을 받지 못했습니다. 현재 상태를 확인한 뒤 다시 시도하세요.');controls();}
+  },3000)};
+  controls();message('모래시계에 설정을 보내고 있습니다…');
+  try {await commandCharacteristic.writeValueWithResponse(restartCommand(id,pending.minutes));}
+  catch(error) {if(pending?.id===id){clearTimeout(pending.timer);pending=undefined;message(`설정 전송 실패: ${error.message}`);controls();}}
+});
+$('test-sound').addEventListener('click',async()=>{try{await enableAudio();chime();}catch(error){message(`오디오를 시작할 수 없습니다: ${error.message}`);}});
+$('sound').addEventListener('change',()=>{if($('sound').checked)enableAudio().catch(()=>message('소리 테스트 버튼을 눌러주세요.'));});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){completion.reset();stale=true;assembler.reset();controls();}});
+
+function draw() {
+  if(snapshot&&device?.gatt?.connected&&performance.now()-lastReceived>1000&&!stale) {
+    stale=true;completion.reset();assembler.reset();$('connection').textContent='수신 지연';$('connection').classList.remove('live');
+    $('state').textContent='새 상태를 기다리는 중';controls();
+  }
+  if(snapshot&&!stale&&snapshot.plane>=.12) {
+    const target=Math.atan2(snapshot.gx,snapshot.gy);
+    const diff=Math.atan2(Math.sin(target-displayAngle),Math.cos(target-displayAngle));
+    displayAngle+=diff*(matchMedia('(prefers-reduced-motion: reduce)').matches?1:.22);
+  }
+  renderer.draw({snapshot,stale,angle:displayAngle,colors,time:performance.now(),
+    reduced:matchMedia('(prefers-reduced-motion: reduce)').matches});
+  requestAnimationFrame(draw);
+}
+function updateSlider() {
+  const minutes = Number($('minutes').value);
+  $('selected-time').innerHTML = String(minutes).padStart(2,'0') + '<span> MIN</span>';
+  $('minutes').setAttribute('aria-valuetext', minutes + '분');
+}
+$('minutes').addEventListener('input',()=>{sliderDirty=true;updateSlider();});
+for(const [module,index] of [['upper',1],['lower',0]]) {
+  const picker=$(module+'-color'), palette=document.querySelector('[data-module="'+module+'"]');
+  try { const saved=localStorage.getItem('hourglass-color-'+module);if(/^#[0-9a-f]{6}$/i.test(saved))colors[index]=saved; } catch {}
+  picker.value=colors[index];
+  const update=()=>{
+    colors[index]=picker.value;
+    try {localStorage.setItem('hourglass-color-'+module,picker.value);} catch {}
+    for(const button of palette.children)button.setAttribute('aria-pressed',String(button.dataset.color===picker.value));
+  };
+  for(const [name,color] of [['빨강','#ff6b62'],['초록','#86d785'],['파랑','#79b6ff'],['호박색','#ffc56e'],['민트','#75d7c8']]) {
+    const button=document.createElement('button');button.type='button';button.dataset.color=color;
+    button.style.setProperty('--swatch',color);button.setAttribute('aria-label',(index?'위':'아래')+' 모듈 '+name);
+    button.addEventListener('click',()=>{picker.value=color;update();});palette.append(button);
+  }
+  picker.addEventListener('input',update);update();
+}
+// Christmas visual preferences and local time presets. No BLE writes until Apply is clicked.
+const snowLayer = $('snow-layer');
+for(let i=0;i<29;i++) {
+  const flake=document.createElement('i');
+  flake.style.setProperty('--x',((i*37.23)%100)+'%');
+  flake.style.setProperty('--delay',(-((i*11)%23))+'s');
+  flake.style.setProperty('--fall',(9+(i%8)*1.5)+'s');
+  flake.style.setProperty('--size',(2+(i%4)*1.2)+'px');
+  flake.style.setProperty('--drift',((i%2?1:-1)*(10+i%5*6))+'px');
+  snowLayer.append(flake);
+}
+const snowToggle = $('snow-toggle');
+try { snowToggle.checked=localStorage.getItem('hourglass-snow')!=='off'; } catch {}
+const updateSnow=()=>{snowLayer.hidden=!snowToggle.checked;try{localStorage.setItem('hourglass-snow',snowToggle.checked?'on':'off');}catch{}};
+snowToggle.addEventListener('change',updateSnow);updateSnow();
+const quickButtons=[...document.querySelectorAll('.quick-time button')];
+function updateQuickButtons(){for(const b of quickButtons)b.setAttribute('aria-pressed',String(Number(b.dataset.minutes)===Number($('minutes').value)));}
+for(const b of quickButtons)b.addEventListener('click',()=>{$('minutes').value=b.dataset.minutes;sliderDirty=true;updateSlider();updateQuickButtons();});
+$('minutes').addEventListener('input',updateQuickButtons);
+updateSlider();updateQuickButtons();
+controls();
+draw();
+
+</script></body></html>
