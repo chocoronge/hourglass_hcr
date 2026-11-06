@@ -96,18 +96,104 @@ footer{padding:24px 3px;color:#718075;font-size:9px}footer>span{color:#a17a44;fo
 @media(prefers-reduced-motion:reduce){.snow-layer i,.festive-tinsel span,.visual:before{animation:none}}
 @media(max-width:760px){.ribbon{top:7%;transform:translateX(-50%) scale(.62)}.festive-tinsel{top:5%}.quick-time{margin-bottom:15px}}
 
+
+/* Four theme skins: independently change page, decor and 3D chassis. */
+.theme-switcher{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:12px 2px 2px}
+.theme-caption{display:flex;gap:8px;align-items:center;font-size:10px;font-weight:800;letter-spacing:1.4px;color:#7c7569}
+.theme-options{display:flex;flex-wrap:wrap;gap:7px}
+.theme-btn{min-height:38px;padding:8px 12px;display:flex;align-items:center;gap:7px;border-radius:100px;font-size:11px;background:#ffffffa6;color:#3c554a;border:1px solid #c9cebf}
+.theme-btn[aria-pressed=true]{border-color:#ae8551;background:#204c3d;color:#fff;box-shadow:0 3px 11px #183e3022}
+.theme-btn .theme-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--dot);box-shadow:inset 0 0 0 1px #0002}
+.theme-btn[aria-pressed=true] .theme-dot{box-shadow:0 0 0 1px #fff7}
+.scene-decor{position:absolute;z-index:3;pointer-events:none;display:none}
+.summer-sun{top:10%;right:14%;width:56px;height:56px;border-radius:50%;background:#ffe9a0;box-shadow:0 0 0 10px #fff0b644,0 0 65px #ffed9d9c}
+.summer-wave{left:-12%;right:-12%;bottom:8%;height:12%;border-top:3px solid #b8f8f4b0;border-radius:50%;transform:rotate(-3deg);box-shadow:0 -12px 0 -10px #b8f8f47d,0 -24px 0 -21px #b8f8f47d}
+.summer-island{left:7%;bottom:8%;width:150px;height:110px}
+.summer-island:before{content:"";position:absolute;left:12px;bottom:0;width:118px;height:44px;border-radius:50% 50% 44% 44%;background:linear-gradient(180deg,#f7dea4,#e3bf72 85%);box-shadow:0 7px 18px #7ca6a533}
+.summer-island:after{content:"";position:absolute;left:76px;bottom:34px;width:6px;height:42px;background:#a96b39;border-radius:5px;box-shadow:-44px 11px 0 0 #4f9a5a}
+.summer-parasol{left:12%;bottom:19%;width:82px;height:72px}
+.summer-parasol:before{content:"";position:absolute;left:36px;bottom:0;width:4px;height:48px;background:#fff2dd;border-radius:4px}
+.summer-parasol:after{content:"";position:absolute;left:14px;bottom:36px;width:50px;height:26px;background:conic-gradient(from .5turn,#ff8f70 0 25%,#fff5d6 0 50%,#ff8f70 0 75%,#fff5d6 0);border-radius:50px 50px 8px 8px;box-shadow:0 3px 10px #ff8f7066}
+.summer-float{right:10%;bottom:18%;width:58px;height:58px;border-radius:50%;border:10px solid #ff8a6a;box-shadow:inset 0 0 0 4px #fff3e0,0 8px 20px #00000024}.summer-float:after{content:"";position:absolute;inset:13px;border-radius:50%;background:#5ee5ef22}
+.summer-palm{right:11%;bottom:11%;width:90px;height:120px;transform:rotate(5deg)}
+.summer-palm:before{content:"";position:absolute;left:40px;bottom:0;width:6px;height:72px;background:linear-gradient(180deg,#8a5a33,#b7773d);border-radius:8px;transform:skew(-8deg)}
+.summer-palm:after{content:"";position:absolute;left:4px;bottom:58px;width:84px;height:42px;background:radial-gradient(ellipse at 22% 100%,#6cd18d 0 34%,transparent 35%),radial-gradient(ellipse at 82% 100%,#78d997 0 32%,transparent 33%),radial-gradient(ellipse at 50% 100%,#57bf79 0 35%,transparent 36%),radial-gradient(ellipse at 28% 10%,#67cb88 0 26%,transparent 27%),radial-gradient(ellipse at 76% 14%,#67cb88 0 26%,transparent 27%);opacity:.95}
+.brick-studs{inset:15%;background-image:radial-gradient(ellipse at 35% 30%,#ffffff42 0 15%,transparent 35%),radial-gradient(circle,#f7e4a43d 0 7px,#76553516 8px,transparent 11px);background-size:62px 62px;opacity:.6}
+.brick-build{left:4%;bottom:7%;width:174px;height:136px}
+.brick-build:before{content:"";position:absolute;left:0;bottom:0;width:74px;height:26px;background:#f9c443;border-radius:7px 7px 4px 4px;box-shadow:0 -14px 0 0 #e84d45,60px 16px 0 0 #3c82d7,64px -2px 0 0 #3fbf68,97px 8px 0 0 #f9c443,102px -18px 0 0 #e84d45}
+.brick-build:after{content:"";position:absolute;left:6px;bottom:14px;width:126px;height:54px;background-image:radial-gradient(circle at 10px 8px,#ffe7a0 0 5px,transparent 6px),radial-gradient(circle at 32px 8px,#ffcbc3 0 5px,transparent 6px),radial-gradient(circle at 54px 8px,#c6e1ff 0 5px,transparent 6px),radial-gradient(circle at 76px 8px,#c7f2d3 0 5px,transparent 6px),radial-gradient(circle at 98px 8px,#ffe7a0 0 5px,transparent 6px);opacity:.9}
+.brick-figures{right:4%;bottom:7%;width:170px;height:140px}
+.brick-figures:before,.brick-figures:after{content:"";position:absolute;bottom:0;width:54px;height:106px;border-radius:10px;background:linear-gradient(180deg,#f2d1aa 0 18px,#d54f3c 18px 48px,#264f88 48px 100%);box-shadow:inset 0 -12px 0 #1e3760, inset 0 18px 0 #f3cfaa}
+.brick-figures:before{right:72px}
+.brick-figures:after{right:10px;background:linear-gradient(180deg,#f2d1aa 0 18px,#f0c645 18px 48px,#4bb46b 48px 100%);box-shadow:inset 0 -12px 0 #2f7a45, inset 0 18px 0 #f3cfaa}
+.brick-figures i,.brick-figures b{position:absolute;display:block;width:26px;height:26px;border-radius:50%;background:#f2d1aa;bottom:84px;box-shadow:0 3px 0 #0001}
+.brick-figures i{right:86px}.brick-figures b{right:24px}
+/* All seasonal embellishments are visible only on their respective theme. */
+body:not([data-theme=christmas]) .festive-tinsel,body:not([data-theme=christmas]) .ribbon,body:not([data-theme=christmas]) .snow-layer{display:none!important}
+body[data-theme=summer] .summer-sun,body[data-theme=summer] .summer-wave,body[data-theme=summer] .summer-island,body[data-theme=summer] .summer-parasol,body[data-theme=summer] .summer-float,body[data-theme=summer] .summer-palm{display:block}
+body[data-theme=brick] .brick-studs,body[data-theme=brick] .brick-build,body[data-theme=brick] .brick-figures{display:block}
+body[data-theme=original]{color-scheme:dark;--paper:#101412;--panel:#1c211e;--ink:#f1efe6;--muted:#a4ada3;--line:#3e4840;--accent:#d9a75c;background:#101412;color:#f1efe6}
+body[data-theme=original] header{border-bottom-color:#41483f}
+body[data-theme=original] header:after{background:#101412;color:#d6a96d}
+body[data-theme=original] .wordmark{color:#f3f0e6}
+body[data-theme=original] .holiday-mark{color:#d5b27a}
+body[data-theme=original] .edition{color:#b0b8ae}
+body[data-theme=original] .instrument{border-color:#465149;box-shadow:0 22px 45px #0006}
+body[data-theme=original] .visual{background:radial-gradient(ellipse at 47% 38%,#34413a,#1c2722 60%,#111c18 100%)}
+body[data-theme=original] .console{background:linear-gradient(150deg,#232923,#181e1a);border-color:#475148}
+body[data-theme=original] h1,body[data-theme=original] .section-heading label,body[data-theme=original] h2,body[data-theme=original] .color-row label,body[data-theme=original] .display-options strong,body[data-theme=original] .audio label{color:#e9eadf}
+body[data-theme=original] p,body[data-theme=original] .hint,body[data-theme=original] .display-options span,body[data-theme=original] #device{color:#a2aea2}
+body[data-theme=original] .eyebrow,body[data-theme=original] .quick-title,body[data-theme=original] .telemetry-title{color:#d6ae78}
+body[data-theme=original] .time-section,body[data-theme=original] .color-section,body[data-theme=original] .telemetry,body[data-theme=original] .audio,body[data-theme=original] .display-options{border-color:#404941}
+body[data-theme=original] .quick-time button,body[data-theme=original] .theme-btn,body[data-theme=original] button:not(.primary):not(.wide){background:#29342d;color:#e5e5d6;border-color:#516050}
+body[data-theme=original] .quick-time button[aria-pressed=true],body[data-theme=original] .theme-btn[aria-pressed=true]{background:#ae7850;border-color:#ae7850;color:#fff}
+body[data-theme=original] dl>div{background:#29332c;border-color:#3f5247}
+body[data-theme=original] dt{color:#b4bdaf}body[data-theme=original] dd{color:#f2e9d6}body[data-theme=original] .telemetry #state{color:#ecbb7c}
+body[data-theme=original] .theme-caption{color:#cbb99d}body[data-theme=original] .wide{background:#b78d55;border-color:#b78d55;color:#161b16}
+body[data-theme=summer]{--paper:#eef8f7;--panel:#fffdf5;--ink:#18596a;--muted:#648997;--line:#c6e2e2;--accent:#e5a35e;background:radial-gradient(ellipse at 10% 0%,#fffcde,transparent 45%),linear-gradient(135deg,#dff6f6,#faf7ea);color:#18596a}
+body[data-theme=summer] header{border-color:#b6d9dc}body[data-theme=summer] header:after{background:#edf8f5;color:#e4a866}
+body[data-theme=summer] .wordmark{color:#127489}body[data-theme=summer] .holiday-mark{color:#e49157}body[data-theme=summer] .edition{color:#4f8a9b}
+body[data-theme=summer] .instrument{border-color:#a6d5da;box-shadow:0 20px 50px #317c9030}
+body[data-theme=summer] .visual{background:linear-gradient(180deg,#a5e4e8 0%,#4ab5c8 54%,#0b758e 100%)}
+body[data-theme=summer] .visual:before{background-image:radial-gradient(circle,#fff7d79b 1px,transparent 2px);background-size:79px 96px;opacity:.6;animation:none}
+body[data-theme=summer] .console{background:linear-gradient(155deg,#fffef7,#eefaf6);border-color:#c1e1df}
+body[data-theme=summer] h1,body[data-theme=summer] .section-heading label,body[data-theme=summer] h2{color:#176879}
+body[data-theme=summer] .eyebrow,body[data-theme=summer] .quick-title,body[data-theme=summer] .telemetry-title{color:#d08a4e}
+body[data-theme=summer] .primary,body[data-theme=summer] .quick-time button[aria-pressed=true],body[data-theme=summer] .theme-btn[aria-pressed=true]{background:#168aa2;border-color:#168aa2;color:#fff}
+body[data-theme=summer] .wide{background:#17849a;border-color:#17849a}body[data-theme=summer] dl>div{background:#e8f6f3;border-color:#d5ece8}body[data-theme=summer] .telemetry #state{color:#d48545}
+body[data-theme=summer] .visual-bottom strong{color:#fff8db}body[data-theme=summer] .view-note,body[data-theme=summer] .visual-top{color:#ebffff}
+body[data-theme=brick]{--paper:#fbf6ed;--panel:#fffef7;--ink:#253c53;--muted:#6c7d85;--line:#e2d5c6;--accent:#e5a337;background:radial-gradient(circle at 4% 2%,#ffdf9a80,transparent 30%),#fbf6ed;color:#253c53}
+body[data-theme=brick] header{border-color:#e4cbaa}body[data-theme=brick] header:after{background:#fbf6ed}
+body[data-theme=brick] .wordmark{color:#29456b}body[data-theme=brick] .holiday-mark{color:#d45b3f}body[data-theme=brick] .edition{color:#547290}
+body[data-theme=brick] .instrument{border:2px solid #ddbb83;border-radius:20px;box-shadow:9px 10px 0 #e5cda4,0 20px 40px #4d3d2720}
+body[data-theme=brick] .visual{background:radial-gradient(ellipse at center,#487dbc,#183e74 60%,#13294e)}
+body[data-theme=brick] .visual:before{background-image:linear-gradient(#ffffff11 2px,transparent 2px),linear-gradient(90deg,#ffffff11 2px,transparent 2px);background-size:49px 49px;animation:none;opacity:.7}
+body[data-theme=brick] .console{background:#fffaf0;border-color:#e0ccb0}
+body[data-theme=brick] h1,body[data-theme=brick] .section-heading label,body[data-theme=brick] h2{color:#27496a}
+body[data-theme=brick] .primary,body[data-theme=brick] .quick-time button[aria-pressed=true],body[data-theme=brick] .theme-btn[aria-pressed=true]{background:#d44e3a;border-color:#d44e3a;color:#fff}
+body[data-theme=brick] .wide{background:#285c9c;border-color:#285c9c}body[data-theme=brick] dl>div{background:#f4f2e5;border-color:#e4dec7}body[data-theme=brick] .telemetry #state{color:#c64d36}
+body[data-theme=brick] .theme-caption{color:#c16739}
+body:not([data-theme=christmas]) .display-options{display:none}
+body:not([data-theme=christmas]) .holiday-scene-label{color:#fff5d0}
+@media(max-width:760px){.theme-switcher{align-items:flex-start;flex-direction:column}.theme-options{width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.theme-btn{font-size:10px;min-height:36px;padding:6px 5px;justify-content:center;gap:4px}.theme-btn .theme-dot{width:7px;height:7px}}
 </style></head>
-<body><main>
-<header><div class="brand"><a class="wordmark" href="./">HOUR<span> / </span></a><span class="holiday-mark">CHRISTMAS EDITION · WALNUT</span></div><span class="edition">A LITTLE MAGIC IN EVERY MINUTE<br>실물과 연결되는 크리스마스의 시간</span></header>
+<body data-theme="christmas"><main>
+<header><div class="brand"><a class="wordmark" href="./">HOUR<span> / </span></a><span class="holiday-mark" id="theme-edition">CHRISTMAS EDITION · WALNUT</span></div><span class="edition">FOUR SEASONS OF TIME<br>실물과 연결되는 나만의 디지털 모래시계</span></header>
+<nav class="theme-switcher" aria-label="화면 테마 선택"><span class="theme-caption">✦ &nbsp; CHOOSE YOUR WORLD</span><div class="theme-options" role="group" aria-label="테마">
+<button type="button" class="theme-btn" data-theme-choice="original" aria-pressed="false" style="--dot:#3f4740"><span class="theme-dot"></span>Original</button>
+<button type="button" class="theme-btn" data-theme-choice="christmas" aria-pressed="true" style="--dot:#246347"><span class="theme-dot"></span>Christmas</button>
+<button type="button" class="theme-btn" data-theme-choice="summer" aria-pressed="false" style="--dot:#56bad0"><span class="theme-dot"></span>Summer</button>
+<button type="button" class="theme-btn" data-theme-choice="brick" aria-pressed="false" style="--dot:#eaaf45"><span class="theme-dot"></span>Brick</button>
+</div></nav>
 <section class="instrument" aria-label="디지털 모래시계 제어">
 <div class="visual">
-<div class="holiday-scene-label" aria-hidden="true">✦ &nbsp; THE MAGIC OF TIME &nbsp; ✦</div>
+<div class="holiday-scene-label" id="theme-scene-label" aria-hidden="true">✦ &nbsp; THE MAGIC OF TIME &nbsp; ✦</div>
 <div class="visual-top"><span id="connection" class="badge">연결 전</span><span id="render-mode">3D VIEW</span></div>
-<div class="scene"><div class="festive-tinsel" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span></div><div class="ribbon" aria-hidden="true"><span class="bow-left"></span><span class="bow-knot"></span><span class="bow-right"></span><span class="ribbon-tail left"></span><span class="ribbon-tail right"></span></div><canvas id="hourglass" width="800" height="800" aria-label="실물 LED 128칸과 화면 평면 기울기를 재현하는 모래시계"></canvas><div class="scene-shadow"></div><div class="snow-layer" id="snow-layer" aria-hidden="true"></div></div>
-<div class="visual-bottom"><span>128 LITTLE LIGHTS<br><strong>Let every second sparkle.</strong></span><span class="view-note">❄ 2026 CHRISTMAS EDITION<br>실물 움직임과 동기화됩니다.</span></div>
+<div class="scene"><div class="scene-decor summer-sun" aria-hidden="true"></div><div class="scene-decor summer-wave" aria-hidden="true"></div><div class="scene-decor summer-island" aria-hidden="true"></div><div class="scene-decor summer-parasol" aria-hidden="true"></div><div class="scene-decor summer-float" aria-hidden="true"></div><div class="scene-decor summer-palm" aria-hidden="true"></div><div class="scene-decor brick-studs" aria-hidden="true"></div><div class="scene-decor brick-build" aria-hidden="true"></div><div class="scene-decor brick-figures" aria-hidden="true"><i></i><b></b></div><div class="festive-tinsel" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span></div><div class="ribbon" aria-hidden="true"><span class="bow-left"></span><span class="bow-knot"></span><span class="bow-right"></span><span class="ribbon-tail left"></span><span class="ribbon-tail right"></span></div><canvas id="hourglass" width="800" height="800" aria-label="실물 LED 128칸과 화면 평면 기울기를 재현하는 모래시계"></canvas><div class="scene-shadow"></div><div class="snow-layer" id="snow-layer" aria-hidden="true"></div></div>
+<div class="visual-bottom"><span>128 LITTLE LIGHTS<br><strong>Let every second sparkle.</strong></span><span class="view-note"><span id="theme-note">❄ CHRISTMAS EDITION</span><br>실물 움직임과 동기화됩니다.</span></div>
 </div>
 <aside class="console">
-<div class="console-title"><span class="eyebrow">✦ THE CHRISTMAS COLLECTION / REFINED</span><h1>반짝이는 시간 <span class="heading-star" aria-hidden="true">✧</span></h1><p id="device">내 모래시계를 연결하세요</p></div>
+<div class="console-title"><span class="eyebrow" id="theme-eyebrow">✦ THE CHRISTMAS COLLECTION / REFINED</span><h1><span id="theme-title">반짝이는 시간</span> <span class="heading-star" aria-hidden="true">✧</span></h1><p id="device">내 모래시계를 연결하세요</p></div>
 <section aria-label="장치 연결"><div class="buttons"><button id="connect" class="primary" disabled>내 모래시계 연결 ↗</button><button id="disconnect" disabled>연결 해제</button></div><p id="message" role="status" aria-live="polite">연결하면 실물의 현재 상태를 가져옵니다.</p></section>
 <section class="time-section" aria-label="시간 설정"><div class="quick-title">QUICK TIME <span>자주 쓰는 시간</span></div><div class="quick-time" role="group" aria-label="시간 빠른 선택"><button type="button" data-minutes="1">1분</button><button type="button" data-minutes="3">3분</button><button type="button" data-minutes="5">5분</button><button type="button" data-minutes="10">10분</button></div>
 <div class="section-heading"><label for="minutes">시간 설정 <span class="mini-sparkle">✦</span></label><output id="selected-time" for="minutes">01<span> MIN</span></output></div>
@@ -124,7 +210,7 @@ footer{padding:24px 3px;color:#718075;font-size:9px}footer>span{color:#a17a44;fo
 <section class="telemetry" aria-label="실시간 상태"><div class="telemetry-title">LIVE MOMENTS <span aria-hidden="true">✧</span></div><p id="state">연결을 기다리고 있어요</p><dl><div><dt>적용된 기준 시간</dt><dd id="duration">—</dd></div><div><dt>실제 경과 시간</dt><dd id="elapsed">—</dd></div><div><dt>위 / 아래 모래</dt><dd id="grains">—</dd></div><div><dt>화면 평면 기울기</dt><dd id="angle">—</dd></div></dl></section>
 <div class="display-options"><div><strong>겨울 장식</strong><span>웹 화면에만 적용</span></div><label class="snow-option"><input type="checkbox" id="snow-toggle" checked> 눈 내리기</label></div><div class="audio"><label><input id="sound" type="checkbox" checked> 완료 알림음</label><button id="test-sound">소리 테스트 ♪</button></div>
 </aside></section>
-<footer><span>✦ HOUR / CHRISTMAS DIGITAL TWIN</span><p>Windows · Chrome / Edge · HTTPS 또는 localhost<br>연결이 끊겨도 실물은 계속 작동합니다. 웹 알림음은 페이지를 열어 둔 동안 사용하세요.</p></footer>
+<footer><span>✦ HOUR / DIGITAL TWIN</span><p>Windows · Chrome / Edge · HTTPS 또는 localhost<br>연결이 끊겨도 실물은 계속 작동합니다. 웹 알림음은 페이지를 열어 둔 동안 사용하세요.</p></footer>
 </main><script type="module">
 const UUID = Object.freeze({
   service: 'f06f0001-6e91-4f6c-946d-5dc7ab714001',
@@ -235,7 +321,7 @@ class WebGLRenderer {
     this.uniforms=Object.fromEntries(['angle','view','aspect'].map(n=>[n,gl.getUniformLocation(program,n)]));
     gl.enable(gl.DEPTH_TEST);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
   }
-  draw({snapshot,stale,angle,colors,time,reduced}) {
+  draw({snapshot,stale,angle,colors,time,reduced,theme}) {
     const {gl,canvas}=this;if(gl.isContextLost())return;
     const size=Math.max(1,Math.round(canvas.clientWidth*Math.min(devicePixelRatio||1,2)));
     const height=Math.max(1,Math.round(canvas.clientHeight*Math.min(devicePixelRatio||1,2)));
@@ -266,23 +352,36 @@ class WebGLRenderer {
     };
     for(let m=0;m<2;m++) {
       const cy=m===1?.87:-.87,c=rgb(colors[m]);
-      // Walnut body: layered bevels produce depth rather than a flat brown outline.
-      prism(diamond(cy,.83),-.17,.015,[.17,.105,.067]);
+      const skins={
+        original:{body:[.09,.125,.10],outer:[.24,.29,.245],inner:[.42,.47,.40],trim:[.76,.68,.48]},
+        christmas:{body:[.17,.105,.067],outer:[.30,.175,.105],inner:[.49,.307,.17],trim:[.82,.66,.40]},
+        summer:{body:[.62,.81,.78],outer:[.74,.89,.86],inner:[.92,.97,.90],trim:[.92,.73,.45]},
+        brick:{body:[.78,.27,.15],outer:[.83,.22,.13],inner:[.96,.38,.19],trim:[1,.79,.28]}
+      };
+      const skin=skins[theme]||skins.christmas;
+      prism(diamond(cy,.83),-.17,.015,skin.body);
       const points=diamond(cy,.87);
       for(let i=0;i<4;i++) {
         const a=points[i],b=points[(i+1)%4];
-        // Dark walnut base rail and a narrower honey-brown inner face.
-        beam(a,b,.065,-.205,.17,[.30,.175,.105]);
-        beam(a,b,.039,.165,.201,[.49,.307,.17]);
-        // Thin satin brass inlay follows the inside of the timber rail.
+        beam(a,b,theme==='brick'?.083:.065,-.205,.17,skin.outer);
+        beam(a,b,theme==='brick'?.058:.039,.165,.201,skin.inner);
         const shrink=p=>[p[0]*.958,cy+(p[1]-cy)*.958];
-        beam(shrink(a),shrink(b),.010,.200,.205,[.82,.66,.40]);
-        // Delicate wood grain: three fine uneven-toned strips parallel to each rail.
-        for(let j=0;j<3;j++) {
-          const t=.31+j*.19;
-          const q0=[a[0]+(b[0]-a[0])*(t-.12),a[1]+(b[1]-a[1])*(t-.12)];
-          const q1=[a[0]+(b[0]-a[0])*(t+.12),a[1]+(b[1]-a[1])*(t+.12)];
-          beam(q0,q1,.0035,.202,.204,j===1?[.60,.395,.228]:[.38,.224,.124]);
+        beam(shrink(a),shrink(b),.010,.200,.205,skin.trim);
+        if(theme==='christmas') {
+          for(let j=0;j<3;j++) {
+            const t=.31+j*.19;
+            const q0=[a[0]+(b[0]-a[0])*(t-.12),a[1]+(b[1]-a[1])*(t-.12)];
+            const q1=[a[0]+(b[0]-a[0])*(t+.12),a[1]+(b[1]-a[1])*(t+.12)];
+            beam(q0,q1,.0035,.202,.204,j===1?[.60,.395,.228]:[.38,.224,.124]);
+          }
+        } else if(theme==='brick') {
+          for(let j=1;j<=3;j++) {
+            const t=j/4,p=[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+            disk(solid,p[0],p[1],.209,.024,[.99,.58,.32,1],[.67,.18,.11,1]);
+            disk(solid,p[0]-.006,p[1]+.006,.211,.009,[1,.81,.50,1]);
+          }
+        } else if(theme==='summer') {
+          beam(a,b,.004,.206,.209,[.98,.99,.93]);
         }
       }
       // A lightly tinted glass cover, raised over the LED board.
@@ -294,17 +393,18 @@ class WebGLRenderer {
         quad(transparent,[...a,.04],[...b,.04],[...b,.145],[...a,.145],[...c,.1]);
       }
       quad(transparent,[-.58,cy+.13,.151],[-.1,cy+.61,.151],[-.075,cy+.57,.151],[-.54,cy+.105,.151],[...c,.11]);
-      beam([-.76,cy+.035],[-.05,cy+.745],.006,.147,.149,[.86,.73,.53]);
+      beam([-.76,cy+.035],[-.05,cy+.745],.006,.147,.149,skin.trim);
       // Small brass rivets at the pointed tips.
-      disk(solid,0,cy+.805,.210,.024,[.91,.76,.49,1]);
-      disk(solid,0,cy-.805,.210,.024,[.91,.76,.49,1]);
-      disk(solid,0,cy+.805,.214,.009,[.99,.89,.67,1]);
-      disk(solid,0,cy-.805,.214,.009,[.99,.89,.67,1]);
+      disk(solid,0,cy+.805,.210,.024,[...skin.trim,1]);
+      disk(solid,0,cy-.805,.210,.024,[...skin.trim,1]);
+      disk(solid,0,cy+.805,.214,.009,[1,.94,.75,1]);
+      disk(solid,0,cy-.805,.214,.009,[1,.94,.75,1]);
     }
-    // Central joint in matching walnut, with a restrained gilded collar.
-    prism([[-.095,.065],[.095,.065],[.095,-.065],[-.095,-.065]],-.15,.15,[.28,.16,.10]);
-    beam([-.096,.057],[.096,.057],.013,.152,.162,[.80,.63,.37]);
-    beam([-.096,-.057],[.096,-.057],.013,.152,.162,[.80,.63,.37]);
+    const joints={original:[[.23,.28,.24],[.68,.71,.58]],christmas:[[.28,.16,.10],[.80,.63,.37]],summer:[[.65,.85,.83],[.98,.88,.66]],brick:[[.20,.39,.72],[.98,.78,.25]]};
+    const joint=joints[theme]||joints.christmas;
+    prism([[-.095,.065],[.095,.065],[.095,-.065],[-.095,-.065]],-.15,.15,joint[0]);
+    beam([-.096,.057],[.096,.057],.013,.152,.162,joint[1]);
+    beam([-.096,-.057],[.096,-.057],.013,.152,.162,joint[1]);
     for(const cell of LED_CELLS) {
       const {module:m,row,col,x,y}=cell,on=snapshot?.grid[m][row][col]??false,c=rgb(colors[m]);
       disk(solid,x+.006,y-.008,.021,.058,[.015,.023,.019,1]); // lens contact shadow
@@ -327,13 +427,15 @@ class WebGLRenderer {
 
 class FlatRenderer {
   constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d');}
-  draw({snapshot,stale,angle,colors}) {
+  draw({snapshot,stale,angle,colors,theme}) {
     const c=this.ctx;if(!c)return;
     c.clearRect(0,0,800,800);c.save();c.translate(400,400);c.rotate(angle);
     for(let m=0;m<2;m++) {
       const cy=(m===1?-.87:.87)*190,r=.86*190;
       c.beginPath();c.moveTo(0,cy-r);c.lineTo(r,cy);c.lineTo(0,cy+r);c.lineTo(-r,cy);c.closePath();
-      c.fillStyle='#241b16';c.fill();c.strokeStyle='#825235';c.lineWidth=10;c.stroke();c.strokeStyle='#d8b879';c.lineWidth=2;c.stroke();
+      const flatSkins={original:['#1a251e','#5b6b60','#c7b08d'],christmas:['#241b16','#825235','#d8b879'],summer:['#9cd4ce','#e1f4e9','#ffe7b0'],brick:['#bf361e','#f26d31','#ffe06e']};
+      const fs=flatSkins[theme]||flatSkins.christmas;
+      c.fillStyle=fs[0];c.fill();c.strokeStyle=fs[1];c.lineWidth=theme==='brick'?13:10;c.stroke();c.strokeStyle=fs[2];c.lineWidth=2;c.stroke();
     }
     for(const {module:m,row,col,x,y} of LED_CELLS){const on=snapshot?.grid[m][row][col]??false;
       c.globalAlpha=on&&stale?.4:1;c.fillStyle=on?colors[m]:'#334336';
@@ -371,6 +473,7 @@ let device, commandCharacteristic, notificationCharacteristic, snapshot;
 let session = 0, busy = false, lastReceived = 0, pending, audioContext;
 let nextId = 1, displayAngle = 0, stale = false;
 let sliderDirty = false;
+let currentTheme = 'christmas';
 const colors = ['#75d7c8', '#ffc56e'];
 const renderer = createRenderer($('hourglass'), mode => $('render-mode').textContent = mode);
 const supported = window.isSecureContext && Boolean(navigator.bluetooth);
@@ -503,7 +606,7 @@ function draw() {
     const diff=Math.atan2(Math.sin(target-displayAngle),Math.cos(target-displayAngle));
     displayAngle+=diff*(matchMedia('(prefers-reduced-motion: reduce)').matches?1:.22);
   }
-  renderer.draw({snapshot,stale,angle:displayAngle,colors,time:performance.now(),
+  renderer.draw({snapshot,stale,angle:displayAngle,colors,theme:currentTheme,time:performance.now(),
     reduced:matchMedia('(prefers-reduced-motion: reduce)').matches});
   requestAnimationFrame(draw);
 }
@@ -548,6 +651,33 @@ const quickButtons=[...document.querySelectorAll('.quick-time button')];
 function updateQuickButtons(){for(const b of quickButtons)b.setAttribute('aria-pressed',String(Number(b.dataset.minutes)===Number($('minutes').value)));}
 for(const b of quickButtons)b.addEventListener('click',()=>{$('minutes').value=b.dataset.minutes;sliderDirty=true;updateSlider();updateQuickButtons();});
 $('minutes').addEventListener('input',updateQuickButtons);
+
+// Theme switching affects only browser presentation; BLE remains untouched.
+const themeNames={
+ original:{edition:'ORIGINAL EDITION',label:'✦  TIME IN MOTION  ✦',eyebrow:'✦ LIVE INSTRUMENT / 01',title:'시간의 움직임',note:'128 LED CELLS',sub:'Time, in its purest form.'},
+ christmas:{edition:'CHRISTMAS EDITION',label:'✦  THE MAGIC OF TIME  ✦',eyebrow:'✦ THE CHRISTMAS COLLECTION / 01',title:'반짝이는 시간',note:'128 LITTLE LIGHTS',sub:'Let every second sparkle.'},
+ summer:{edition:'SUMMER RESORT EDITION',label:'☀  A LITTLE RESORT ESCAPE  ☀',eyebrow:'☀ SUMMER RESORT / 01',title:'피서지의 시간',note:'128 SUNLIT LIGHTS',sub:'A little holiday in every minute.'},
+ brick:{edition:'BRICK EDITION',label:'✦  BUILD YOUR TIME  ✦',eyebrow:'✦ LITTLE BRICK STUDIO / 01',title:'브릭의 시간',note:'128 PLAYFUL LIGHTS',sub:'Build, play and make every second count.'}
+};
+const themeButtons=[...document.querySelectorAll('[data-theme-choice]')];
+function applyTheme(theme,save=true){
+ if(!themeNames[theme])theme='christmas';
+ currentTheme=theme;document.body.dataset.theme=theme;
+ for(const b of themeButtons)b.setAttribute('aria-pressed',String(b.dataset.themeChoice===theme));
+ const info=themeNames[theme];
+ $('theme-edition').textContent=info.edition;
+ $('theme-scene-label').textContent=info.label;
+ $('theme-eyebrow').textContent=info.eyebrow;
+ $('theme-title').textContent=info.title;
+ $('theme-note').textContent=info.edition;
+ document.querySelector('.visual-bottom>span:first-child').innerHTML=info.note+'<br><strong>'+info.sub+'</strong>';
+ document.title='HOUR / '+info.edition+' · 디지털 모래시계';
+ if(save){try{localStorage.setItem('hourglass-theme',theme);}catch{}}
+}
+for(const b of themeButtons)b.addEventListener('click',()=>applyTheme(b.dataset.themeChoice));
+let savedTheme='christmas';try{savedTheme=localStorage.getItem('hourglass-theme')||'christmas';}catch{}
+applyTheme(savedTheme,false);
+
 updateSlider();updateQuickButtons();
 controls();
 draw();
